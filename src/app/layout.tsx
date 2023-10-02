@@ -1,37 +1,49 @@
-import clsx from "clsx";
-import "./globals.css";
-import { Nunito, Nunito_Sans } from "next/font/google";
-import type { Metadata, ResolvingMetadata } from 'next'
-import { createClient } from "@/prismicio";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import "styles/globals.css";
+import type { Metadata, ResolvingMetadata } from "next";
+import localFont from "next/font/local";
+import { Header } from "components/Header";
+import { Footer } from "components/Footer";
+import { createClient } from "prismicio";
 
-const nunito = Nunito({
-  subsets: ["latin"],
+type Props = {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+export async function getStaticPath() {
+  const client = createClient();
+  const pages = await client.getAllByType("homepage", { lang: "*" });
+  return {
+    paths: pages.map((page) => page.url),
+    fallback: false,
+  };
+}
+
+const BonyadeKoodakFont = localFont({
+  src: [
+    {
+      path: "../assets/fonts/Bonyade-Koodak/woff2/BonyadeKoodakFaNum-VF.woff2",
+      weight: "400",
+      style: "normal",
+    },
+  ],
   display: "swap",
-  variable: "--font-nunito",
+  variable: "--font-BonyadeKoodak",
 });
 
-const nunitoSans = Nunito_Sans({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-nunito-sans",
-});
- 
-export async function generateMetadata(): Promise<Metadata> {
- const client = createClient();
-
- const page = await client.getSingle("settings");
- 
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent?: ResolvingMetadata
+): Promise<Metadata> {
+  const client = createClient();
+  const page = await client.getSingle("settings");
   return {
     title: page.data.site_title || "Hesetazegi",
-    description : page.data.meta_description || "Hesetazegi description" ,
+    description: page.data.meta_description || "Hesetazegi description",
     openGraph: {
       images: [page.data.og_image.url || ""],
     },
-  }
+  };
 }
- 
 
 export default function RootLayout({
   children,
@@ -39,9 +51,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={clsx(nunito.variable, nunitoSans.variable)}>
-        <Header />
+    <html>
+      <head></head>
+      <body className={BonyadeKoodakFont.variable}>
+        <Header locales={undefined} settings={undefined} />
         {children}
         <Footer />
       </body>

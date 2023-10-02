@@ -1,6 +1,13 @@
+import Palate from "./src/theme/Palate/index";
+import BorderRadius from './src/theme/Shape';
+import Breakpoints from "./src/theme/Breakpoint";
+import FontFamily from "./src/theme/Typography/font-family";
+import Spacing from "./src/theme/spacing";
+import Typography from "./src/theme/Typography/typography";
+
 import type { Config } from 'tailwindcss'
 
-const config: Config = {
+export default {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -8,13 +15,15 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend : {
-      fontFamily : {
-        body : ["var(--font-nunito-sans)"],
-        display : ["var(--font-nunito)"]
-      }
-    }
+    colors: Palate,
+    borderRadius: BorderRadius,  
+    fontSize: Typography,
+    extend: {
+      fontFamily: FontFamily,
+      screens: Breakpoints,
+      spacing: Spacing
+    },
   },
   plugins: [],
-}
-export default config
+} satisfies Config;
+

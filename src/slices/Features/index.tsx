@@ -1,4 +1,4 @@
-import { Heading } from "@/components/Heading";
+import { Heading } from "components/Heading";
 import { Content } from "@prismicio/client";
 import {
   JSXMapSerializer,
@@ -34,14 +34,15 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
       <Heading as="h3" size="lg">
         <PrismicRichText
           field={slice.primary.heading}
-          components={{heading1 : ({children})=>(
-            <span>{children}</span>
-          )}}
+          components={{ heading1: ({ children }) => <span>{children}</span> }}
         />
       </Heading>
       <div className="flex flex-col gap-5">
         {slice.items.map((item, index) => (
-          <div key={index} className="flex flex-col gap-2 bg-slate-500 max-w-fit">
+          <div
+            key={index}
+            className="flex flex-col gap-2 bg-slate-500 max-w-fit"
+          >
             <PrismicRichText field={item.title} />
             <PrismicRichText field={item.description} />
           </div>

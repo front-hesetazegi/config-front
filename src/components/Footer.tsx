@@ -1,18 +1,14 @@
-import { createClient } from "@/prismicio"
+import { createClient } from "prismicio";
 
-const Footer =  async () => {
-
-  const settings = createClient()
-  const settingsData = await settings.getSingle("settings")
+const Footer = async () => {
+  const settings = createClient();
+  const settingsData = await settings.getSingle("settings");
 
   return (
     <>
-    <footer>
-      footer: {" "}
-      {settingsData.data.meta_description}
-    </footer>
+      <footer>footer: {settingsData.data.meta_description}</footer>
     </>
-  )
-}
+  );
+};
 
-export {Footer}
+export { Footer };

@@ -1,22 +1,18 @@
-import { createClient } from "@/prismicio";
 import { PrismicNextLink } from "@prismicio/next";
 
-const Header = async () => {
-  const client = createClient();
-  const settingsData = await client.getSingle("settings");
-
+const Header = ({ locales, settings }) => {
   return (
     <>
-      <header>header: {settingsData.data.site_title}</header>
-      <nav>
+      {/* <header>header: {settings.lang}</header> */}
+      {/* <nav>
         <ul>
-          {settingsData.data.navigation.map(({ label, link }) => (
+          {settings.data.navigation.map(({ label, link }) => (
             <li key={label}>
-              Link: {" "}<PrismicNextLink field={link}>{label}</PrismicNextLink>
+              Link: <PrismicNextLink field={link}>{label}</PrismicNextLink>
             </li>
           ))}
         </ul>
-      </nav>
+      </nav> */}
     </>
   );
 };

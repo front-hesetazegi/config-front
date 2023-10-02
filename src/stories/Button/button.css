@@ -1,0 +1,36 @@
+.storybook-button {
+  font-weight: 700;
+  border: 0;
+  border-radius: 3em;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 1;
+}
+.storybook-button--outlined {
+  color: black;
+  background-color: white ;
+  border: 1px solid black;
+}
+.storybook-button--contained {
+  color: white ;
+  background-color:#333;
+  border: 1px solid #333;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
+}
+.storybook-button--text {
+  color: #333 ;
+  background-color: transparent;
+  border: none;
+}
+.storybook-button--small {
+  font-size: 12px;
+  padding: 10px 16px;
+}
+.storybook-button--medium {
+  font-size: 14px;
+  padding: 11px 20px;
+}
+.storybook-button--large {
+  font-size: 16px;
+  padding: 12px 24px;
+}
