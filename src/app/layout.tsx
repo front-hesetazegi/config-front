@@ -11,17 +11,23 @@ type Props = {
 };
 
 
+// const BonyadeKoodakFont = localFont({
+//   src: [
+//     {
+//       path: "../assets/fonts/Bonyade-Koodak/woff2/BonyadeKoodakFaNum-VF.woff2",
+//       weight: "400",
+//       style: "normal",
+//     },
+//   ],
+//   display: "swap",
+//   variable: "--font-BonyadeKoodak",
+// });
+
 const BonyadeKoodakFont = localFont({
-  src: [
-    {
-      path: "../assets/fonts/Bonyade-Koodak/woff2/BonyadeKoodakFaNum-VF.woff2",
-      weight: "400",
-      style: "normal",
-    },
-  ],
+  src: '../assets/fonts/Bonyade-Koodak/woff2/BonyadeKoodakFaNum-VF.woff2',
   display: "swap",
-  variable: "--font-BonyadeKoodak",
-});
+  variable: '--font-BonyadeKoodak',
+})
 
 export async function generateMetadata(
   { params, searchParams }: Props,
