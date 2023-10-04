@@ -34,10 +34,10 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
       <Heading as="h3" size="lg">
         <PrismicRichText
           field={slice.primary.heading}
-          components={{ heading1: ({ children }) => <span>{children}</span> }}
+          components={{ heading1: ({ children }) => <span className="font-body">{children}</span> }}
         />
       </Heading>
-      <div className="flex flex-col gap-5">
+      {/* <div className="flex flex-col gap-5">
         {slice.items.map((item, index) => (
           <div
             key={index}
@@ -47,7 +47,7 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
             <PrismicRichText field={item.description} />
           </div>
         ))}
-      </div>
+      </div> */}
     </section>
   );
 };

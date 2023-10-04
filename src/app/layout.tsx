@@ -9,14 +9,7 @@ type Props = {
   params: { id: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
-export async function getStaticPath() {
-  const client = createClient();
-  const pages = await client.getAllByType("homepage", { lang: "*" });
-  return {
-    paths: pages.map((page) => page.url),
-    fallback: false,
-  };
-}
+
 
 const BonyadeKoodakFont = localFont({
   src: [
