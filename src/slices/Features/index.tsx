@@ -5,6 +5,7 @@ import {
   PrismicRichText,
   SliceComponentProps,
 } from "@prismicio/react";
+import Link from "next/link";
 
 const components: JSXMapSerializer = {
   heading2: ({ children }) => (
@@ -28,13 +29,18 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
+      
       {/* <Heading as="h1" size="lg"  > */}
       <PrismicRichText components={components} field={slice.primary.heading} />
       {/* </Heading> */}
       <Heading as="h3" size="lg">
         <PrismicRichText
           field={slice.primary.heading}
-          components={{ heading1: ({ children }) => <span className="font-body">{children}</span> }}
+          components={{
+            heading1: ({ children }) => (
+              <span className="font-body">{children}</span>
+            ),
+          }}
         />
       </Heading>
       {/* <div className="flex flex-col gap-5">

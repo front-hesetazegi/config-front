@@ -1,14 +1,8 @@
 import "styles/globals.css";
-import type { Metadata, ResolvingMetadata } from "next";
 import localFont from "next/font/local";
 import { Footer } from "components/Footer";
 import { createClient } from "prismicio";
 import { PropsWithChildren } from "react";
-
-type Props = {
-  params: { id: string; lang: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
 
 const BonyadeKoodakFont = localFont({
   src: "../../assets/fonts/Bonyade-Koodak/woff2/BonyadeKoodakFaNum-VF.woff2",
@@ -16,10 +10,7 @@ const BonyadeKoodakFont = localFont({
   variable: "--font-BonyadeKoodak",
 });
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent?: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata() {
   const client = createClient();
   const page = await client.getSingle("settings");
   return {

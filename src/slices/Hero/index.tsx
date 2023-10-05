@@ -1,6 +1,7 @@
 import { Content } from "@prismicio/client";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import Link from "next/link";
 
 /**
  * Props for `Hero`.
@@ -17,6 +18,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
       data-slice-variation={slice.variation}
       className={slice.variation === "anotherModel" ? "flex" : "block"}
     >
+      
       <PrismicRichText
         components={{
           heading1: ({ children }) => (
