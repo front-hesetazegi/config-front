@@ -1,33 +1,20 @@
 import "styles/globals.css";
 import type { Metadata, ResolvingMetadata } from "next";
 import localFont from "next/font/local";
-import { Header } from "components/Header";
 import { Footer } from "components/Footer";
 import { createClient } from "prismicio";
+import { PropsWithChildren } from "react";
 
 type Props = {
-  params: { id: string };
+  params: { id: string; lang: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-
-// const BonyadeKoodakFont = localFont({
-//   src: [
-//     {
-//       path: "../assets/fonts/Bonyade-Koodak/woff2/BonyadeKoodakFaNum-VF.woff2",
-//       weight: "400",
-//       style: "normal",
-//     },
-//   ],
-//   display: "swap",
-//   variable: "--font-BonyadeKoodak",
-// });
-
 const BonyadeKoodakFont = localFont({
-  src: '../assets/fonts/Bonyade-Koodak/woff2/BonyadeKoodakFaNum-VF.woff2',
+  src: "../../assets/fonts/Bonyade-Koodak/woff2/BonyadeKoodakFaNum-VF.woff2",
   display: "swap",
-  variable: '--font-BonyadeKoodak',
-})
+  variable: "--font-BonyadeKoodak",
+});
 
 export async function generateMetadata(
   { params, searchParams }: Props,
@@ -44,16 +31,21 @@ export async function generateMetadata(
   };
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export interface LocalePageProps extends PropsWithChildren {
+  params: { lang: string };
+}
+
+export default function RootLayout({ children, params }: LocalePageProps) {
+  const { lang } = params;
+  console.log("params is", lang);
+
   return (
-    <html>
+    <html
+      dir={lang === "fa-ir" ? "rtl" : "ltr"}
+      lang={lang === "fa-ir" ? "fa" : "en"}
+    >
       <head></head>
-      <body className={BonyadeKoodakFont.variable}>
-        <Header locales={undefined} settings={undefined} />
+      <body className={BonyadeKoodakFont.className}>
         {children}
         <Footer />
       </body>

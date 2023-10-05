@@ -20,7 +20,9 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
       <PrismicRichText
         components={{
           heading1: ({ children }) => (
-            <h1 className="text-black text-7xl">{children}</h1>
+            <h1 className="text-black text-7xl rtl:bg-green-600 ltr:bg-redAlert-800 ms-10">
+              {children}
+            </h1>
           ),
         }}
         field={slice.primary.heading}
@@ -50,6 +52,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
         }}
       >
         <PrismicNextImage
+          alt=""
           style={{ width: "500px", display: "block" }}
           field={slice.primary.image}
         />
