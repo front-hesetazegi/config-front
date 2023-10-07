@@ -10,7 +10,11 @@ export const repositoryName = config.repositoryName;
  * {@link https://prismic.io/docs/route-resolver#route-resolver}
  */
 // TODO: Update the routes array to match your project's route structure.
-const routes: prismic.ClientConfig["routes"] = [];
+const routes: prismic.ClientConfig["routes"] = [{
+  type : 'homepage',path : "/"
+},{
+  type : "about_us",path : "/about-us"
+}];
 
 /**
  * Creates a Prismic client for the project's repository. The client is used to

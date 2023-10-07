@@ -1,22 +1,9 @@
-const dictionaries: {
-  enUs: () => Promise<{
-    form: {
-      name: string;
-      email: string;
-      city: string;
-    };
-  }>;
-  faIr: () => Promise<{
-    form: {
-      name: string;
-      email: string;
-      city: string;
-    };
-  }>;
-} = {
-  enUs: () => import("./dictionaries/en-us.json").then((r) => r.default),
-  faIr: () => import("./dictionaries/fa-ir.json").then((r) => r.default),
-};
+import 'server-only'
+import type { Locale } from './i18n.config'
 
-export const getDictionary = async (locale: "enUs" | "faIr") =>
-  dictionaries[locale]();
+const dictionaries = {
+  "en-us": () => import('./dictionaries/en-us.json').then(module => module.default),
+  "fa-ir": () => import('./dictionaries/fa-ir.json').then(module => module.default)
+}
+
+export const getDictionary = async (locale: Locale) => dictionaries[locale]()

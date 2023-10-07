@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Footer } from "components/Footer";
 import { createClient } from "prismicio";
 import { PropsWithChildren } from "react";
+import { Locale, i18n } from '../../../i18n.config'
 
 const BonyadeKoodakFont = localFont({
   src: "../../assets/fonts/Bonyade-Koodak/woff2/BonyadeKoodakFaNum-VF.woff2",
@@ -22,13 +23,16 @@ export async function generateMetadata() {
   };
 }
 
+export async function generateStaticParams() {
+  return i18n.locales.map(locale => ({ lang: locale }))
+}
+
 export interface LocalePageProps extends PropsWithChildren {
   params: { lang: string };
 }
 
 export default function RootLayout({ children, params }: LocalePageProps) {
   const { lang } = params;
-  console.log("params is", lang);
 
   return (
     <html
