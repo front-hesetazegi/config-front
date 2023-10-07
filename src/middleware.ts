@@ -4,19 +4,21 @@ import { NextResponse } from "next/server";
 import { i18n } from "../i18n.config";
 
 import { match as matchLocale } from "@formatjs/intl-localematcher";
-import Negotiator from "negotiator";
 
 function getLocale(request: NextRequest): string | undefined {
   const negotiatorHeaders: Record<string, string> = {};
   request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
 
-  const locales: string[] = ["en-us", "fa-ir"];
+  const locales: string[] = ["fa", "en"];
 
-  const languages = new Negotiator({ headers: negotiatorHeaders }).languages();
+  // const languages = new Negotiator({ headers: negotiatorHeaders }).languages();
 
   // const preferredLanguages = [...languages, "fa-ir"]; // Add 'fa' for Persian (Farsi) language
 
-  const locale = matchLocale(["fa", "en"], locales, i18n.defaultLocale);
+  const locale = matchLocale(locales, locales, i18n.defaultLocale);
+
+  console.log("locale is", locale);
+
   return locale;
 }
 
@@ -29,9 +31,12 @@ export function middleware(request: NextRequest) {
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request);
+    console.log("locale is", locale);
     return NextResponse.redirect(
       new URL(
-        `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
+        `/${locale === "fa" ? "fa" : "en"}${
+          pathname.startsWith("/") ? "" : "/"
+        }${pathname}`,
         request.url
       )
     );

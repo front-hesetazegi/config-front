@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { createClient } from "prismicio";
 import { components } from "slices";
+import { prismicLang } from "../../../i18n.config";
 
 // import { getLocales } from "@/lib/getLocales";
 
@@ -13,7 +14,9 @@ export async function generateMetadata({
   params: { lang },
 }: Props): Promise<Metadata> {
   const client = createClient();
-  const page = await client.getSingle("homepage", { lang });
+  const page = await client.getSingle("homepage", {
+    lang: prismicLang(lang),
+  });
 
   return {
     title: page.data.title,
@@ -27,11 +30,13 @@ type Props = {
 export default async function Page({ params: { lang } }: Props) {
   const client = createClient();
 
-  const page = await client.getSingle("homepage", { lang });
+  const page = await client.getSingle("homepage", {
+    lang: prismicLang(lang),
+  });
 
   return (
     <>
-      <Link href={"/about-us"} lang="en-us" locale="en-us">
+      <Link href={"/about-us"} lang="en" locale="en">
         <div className="bg-redAlert-400">go for the english website</div>
       </Link>
       <br />
