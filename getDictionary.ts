@@ -6,4 +6,8 @@ const dictionaries = {
   fa: () => import("./dictionaries/fa.json").then((module) => module.default),
 };
 
+export const prismicLang = (lang: string) => {
+  return lang === "fa" ? "fa-ir" : "en-us";
+};
+
 export const getDictionary = async (locale: Locale) => dictionaries[locale]();

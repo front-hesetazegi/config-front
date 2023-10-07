@@ -17,8 +17,6 @@ function getLocale(request: NextRequest): string | undefined {
 
   const locale = matchLocale(locales, locales, i18n.defaultLocale);
 
-  console.log("locale is", locale);
-
   return locale;
 }
 
@@ -31,7 +29,6 @@ export function middleware(request: NextRequest) {
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request);
-    console.log("locale is", locale);
     return NextResponse.redirect(
       new URL(
         `/${locale === "fa" ? "fa" : "en"}${

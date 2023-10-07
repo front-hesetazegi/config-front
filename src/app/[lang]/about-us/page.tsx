@@ -3,8 +3,7 @@ import { Metadata } from "next";
 
 import { createClient } from "prismicio";
 import { components } from "slices";
-import { getDictionary } from "../../../../getDictionary";
-import { prismicLang } from "../../../../i18n.config";
+import { getDictionary, prismicLang } from "../../../../getDictionary";
 
 type Props = {
   params: { lang: string };

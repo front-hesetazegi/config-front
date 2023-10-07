@@ -3,7 +3,8 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { createClient } from "prismicio";
 import { components } from "slices";
-import { prismicLang } from "../../../i18n.config";
+import { prismicLang } from "../../../getDictionary";
+// import { prismicLang } from "../../../i18n.config";
 
 // import { getLocales } from "@/lib/getLocales";
 

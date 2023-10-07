@@ -27,6 +27,23 @@ export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
 }
 
+// export async function getStaticProps({ params, locale, previewData }: any) {
+//   const client = createClient({ previewData });
+
+//   const page = await client.getByUID("settings", params.uid, {
+//     lang: locale === "fa" ? "fa-ir" : "en-us",
+//   });
+
+//   const locales = await getLocales(page, client);
+
+//   return {
+//     props: {
+//       page,
+//       locales,
+//     },
+//   };
+// }
+
 export interface LocalePageProps extends PropsWithChildren {
   params: { lang: string };
 }
